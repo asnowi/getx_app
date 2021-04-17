@@ -7,7 +7,6 @@ class FindPwdView extends GetView<FindPwdController> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
@@ -86,6 +85,7 @@ class FindPwdView extends GetView<FindPwdController> {
           textAlign: TextAlign.start,
           //文本对齐方式
           keyboardType: TextInputType.phone,
+          enabled: true,
           style: TextStyle(
             fontSize: 16,
             color: Colors.black87,
@@ -138,11 +138,12 @@ class FindPwdView extends GetView<FindPwdController> {
           ),
           onChanged: (text) {
             //内容改变的回调
-            controller.setPhone(text);
+           controller.setPhone(text);
           },
           onSubmitted: (text) {
             //内容提交(按回车)的回调
             LogUtils.GGQ('phone onSubmitted:${text}');
+            controller.toCodePage();
           },
         ),
       )),
@@ -153,7 +154,9 @@ class FindPwdView extends GetView<FindPwdController> {
     return Container(
       width: 0.82.sw,
       child: Obx(() => ElevatedButton(
-          onPressed: controller.isShowDel ? () {} : null,
+          onPressed: controller.isShowDel ? () {
+            controller.toCodePage();
+          } : null,
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.resolveWith((states) {
             if (states.contains(MaterialState.disabled)) {

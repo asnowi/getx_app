@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_app/pages/code/code_binding.dart';
+import 'package:getx_app/pages/code/code_view.dart';
 import 'package:getx_app/pages/findPwd/findPwd_binding.dart';
 import 'package:getx_app/pages/findPwd/findPwd_view.dart';
 import 'package:getx_app/pages/home/home_binding.dart';
@@ -34,6 +36,14 @@ class AppPages {
       binding: FindPwdBinding(),
       transitionDuration: Duration(milliseconds: 300),
       transition: Transition.rightToLeftWithFade
+    ),
+
+    GetPage(
+        name: AppRoutes.code,
+        page: () => CodeView(),
+        binding: CodeBinding(),
+        transitionDuration: Duration(milliseconds: 300),
+        transition: Transition.rightToLeftWithFade
     ),
   ];
 
