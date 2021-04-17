@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ResourceName">
+
+    <cache-path
+        name="cache"
+        path="." /> <!--Context.getCacheDir() -->
+    <files-path
+        name="files"
+        path="." /> <!--Context.getFilesDir() -->
+
+    <external-path
+        name="external"
+        path="." />  <!--  Environment.getExternalStorageDirectory() -->
+    <external-cache-path
+        name="external-cache"
+        path="." /> <!--  Context.getExternalCacheDir() -->
+    <external-files-path
+        name="external-files"
+        path="." /> <!--  Context.getExternalFilesDir() -->
+
+    <!--    PictureSelector 拍照-->
+    <external-path
+        name="camera_photos"
+        path="DCIM/Camera" />
+</paths>
