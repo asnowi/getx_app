@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_app/common/widget/input/grid_input.dart';
 import 'package:getx_app/pages/code/code_controller.dart';
 import 'package:getx_app/common/utils/index.dart';
 
@@ -33,10 +34,15 @@ class CodeView extends GetView<CodeController>{
       child: Column(
         children: [
           _buildTitle(),
-          _buildExplan(),
+          _buildSubTitle(),
+          _buildInput(),
         ],
       ),
     );
+  }
+
+  Widget _buildInput(){
+    return GridInput();
   }
 
   Widget _buildTitle() {
@@ -47,23 +53,30 @@ class CodeView extends GetView<CodeController>{
       child: Text(
         '请输入验证码',
         style: TextStyle(
-            fontSize: 26, color: Colors.black87, fontWeight: FontWeight.bold),
+            fontSize: 26,
+            color: Colors.black87,
+            fontWeight: FontWeight.bold
+        ),
       ),
     );
   }
 
-  Widget _buildExplan() {
+  Widget _buildSubTitle() {
+    //
     return Container(
       padding: EdgeInsets.only(top: 3, bottom: 30),
       alignment: Alignment.centerLeft,
       width: 0.82.sw,
-      child: Text(
-        '验证码已发送至',
-        style: TextStyle(
-          fontSize: 12,
-          color: Colors.grey,
+        child: GetBuilder<CodeController>(
+          id: 'subTitle',
+          builder: (_) => Text(
+            controller.subTitle,
+            style: TextStyle(
+              color: Colors.grey,
+              fontSize: 12
+            ),
+          ),
         ),
-      ),
     );
   }
 

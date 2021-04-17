@@ -1,8 +1,6 @@
-import 'dart:isolate';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_app/common/utils/iconfont.dart';
+import 'package:getx_app/common/utils/index.dart';
 import 'package:getx_app/pages/home/home_controller.dart';
 import 'package:getx_app/pages/main/main_view.dart';
 import 'package:getx_app/pages/mine/mine_view.dart';
