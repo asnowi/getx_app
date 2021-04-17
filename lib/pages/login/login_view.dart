@@ -1,15 +1,13 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:getx_app/common/config/const.dart';
 import 'package:getx_app/common/db/index.dart';
-import 'package:getx_app/common/utils/iconfont.dart';
+import 'package:getx_app/common/router/app_pages.dart';
 import 'package:getx_app/common/utils/index.dart';
-import 'package:getx_app/common/utils/log.dart';
-import 'package:getx_app/common/utils/regex.dart';
 import 'package:getx_app/global.dart';
 import 'package:getx_app/pages/login/login_controller.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginView extends GetView<LoginController> {
 
@@ -50,17 +48,28 @@ class LoginView extends GetView<LoginController> {
       color: Colors.white,
       alignment: Alignment.center,
       width: Get.width,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Flex(
+        direction: Axis.vertical,
         children: [
-          _buildUserNameTextField(userNameController),
-          SizedBox(height: 20.h),
-          _buildPasswordTextField(passwordController),
-          SizedBox(height: 30.h),
-          _buildLogin(userNameController,passwordController),
+          _buildTop(),
+          _buildWrap(userNameController,passwordController),
+          _buildAgreement()
         ],
       ),
+    );
+  }
+
+
+  Widget _buildTop(){
+    return Expanded(
+      flex: 1,
+      child: Container(
+        alignment: Alignment.center,
+        child: Text('平安电车',style: TextStyle(
+            fontSize: 26,
+            color: Colors.black87,
+            fontWeight: FontWeight.bold
+        ),)),
     );
   }
 
@@ -68,7 +77,7 @@ class LoginView extends GetView<LoginController> {
     final String _phone = '13717591366';
     if(_phone != null && _phone.isNotEmpty){
       textController.text = _phone;
-       controller.changePhoneDel(true);
+      controller.changePhoneDel(true);
     }
     return ConstrainedBox(
       constraints: BoxConstraints(
@@ -81,6 +90,7 @@ class LoginView extends GetView<LoginController> {
         autocorrect: true,//是否自动更正
         autofocus: true,//是否自动对焦
         textAlign: TextAlign.start,//文本对齐方式
+        keyboardType: TextInputType.phone,
         style: TextStyle(
           fontSize: 16,
           color: Colors.black87,
@@ -98,7 +108,7 @@ class LoginView extends GetView<LoginController> {
             child: Icon(Iconfont.close,color: Colors.blue,size: 16),
             onTap: (){
               textController.clear();
-             controller.changePhoneDel(false);
+              controller.changePhoneDel(false);
             },
           ): null,
           // contentPadding: EdgeInsets.all(10),
@@ -168,10 +178,16 @@ class LoginView extends GetView<LoginController> {
     );
   }
 
-  Widget _buildLogin (TextEditingController userNameController, TextEditingController passwordController) {
+  Widget _buildLogin(TextEditingController userNameController, TextEditingController passwordController) {
     return Container(
       width: 0.82.sw ,
       child: Obx(() => ElevatedButton(onPressed: controller.hasLogin? (){
+
+        if(!controller.isAgree){
+          Get.snackbar('请同意', '请您认真阅读并同意《用户使用协议》及《隐私条款》');
+          return;
+        }
+
         if(!RegexUtils.isPhone(userNameController.text)){
           Get.snackbar('', '您输入的手机号格式不正确');
           return;
@@ -195,6 +211,101 @@ class LoginView extends GetView<LoginController> {
             ),),
           )
       )),
+    );
+  }
+
+  Widget _buildForgotPassword(TextEditingController userNameController){
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+          maxWidth: 0.82.sw
+      ),
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: TextButton(onPressed: (){
+            final phone = userNameController.text;
+            Get.toNamed(AppRoutes.findPwd,arguments: {'phone': phone});
+        }, child: Text('忘记密码?',style: TextStyle(fontSize: 14,color: Colors.grey),)),
+      ),
+    );
+  }
+
+  Widget _buildWrap(TextEditingController userNameController,TextEditingController passwordController){
+    return Column(
+      children: [
+        _buildUserNameTextField(userNameController),
+        SizedBox(height: 20.h),
+        _buildPasswordTextField(passwordController),
+        SizedBox(height: 30.h),
+        _buildLogin(userNameController,passwordController),
+        _buildForgotPassword(userNameController),
+      ],
+    );
+  }
+
+  Widget _buildAgreement(){
+    return Expanded(
+      flex: 1,
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 20),
+        alignment: Alignment.bottomCenter,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(6),
+              child: InkWell(
+                child: Obx(() => controller.isAgree? Icon(Icons.radio_button_on,size: 18,color: Colors.blue,): Icon(Icons.radio_button_off,size: 18,color: Colors.grey,)),
+                onTap: (){
+                  controller.changeAgree(!controller.isAgree);
+                },
+                splashColor: Colors.blue[50],
+                focusColor: Colors.blue[50],
+                highlightColor: Colors.blue[50],
+              ),
+            ),
+
+            RichText(
+              text: TextSpan(
+                  text: '我已认真阅读并同意',
+                  style: TextStyle(color: Colors.black, fontSize: 10),
+                  children: [
+                    TextSpan(
+                        text: "《用户使用协议》",
+                        style: TextStyle(
+                            color: Colors.blue,
+                            fontSize: 10,
+                            fontStyle: FontStyle.italic,
+                            decoration: TextDecoration.underline),
+                            recognizer: TapGestureRecognizer() ..onTap = () async {
+                              // Toast.show('用户使用协议');
+                              Get.snackbar('','用户使用协议');
+                            }
+                    ),
+                    TextSpan(
+                        text: "及",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 10,
+                            fontStyle: FontStyle.italic)),
+                    TextSpan(
+                        text: "《隐私条款》",
+                        style: TextStyle(
+                            color: Colors.blue,
+                            fontSize: 10,
+                            fontStyle: FontStyle.italic,
+                            decoration: TextDecoration.underline),
+                            recognizer: TapGestureRecognizer() ..onTap = () async {
+                              //Toast.show('隐私条款');
+                              Get.snackbar('','隐私条款');
+                            }
+                    ),
+                  ]
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 

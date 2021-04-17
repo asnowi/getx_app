@@ -1,5 +1,8 @@
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_app/pages/findPwd/findPwd_binding.dart';
+import 'package:getx_app/pages/findPwd/findPwd_view.dart';
 import 'package:getx_app/pages/home/home_binding.dart';
 import 'package:getx_app/pages/home/home_view.dart';
 import 'package:getx_app/pages/login/login_binding.dart';
@@ -23,6 +26,14 @@ class AppPages {
       page: () => HomeView(),
       binding: HomeBinding(),
       transitionDuration: Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: AppRoutes.findPwd,
+      page: () => FindPwdView(),
+      binding: FindPwdBinding(),
+      transitionDuration: Duration(milliseconds: 300),
+      transition: Transition.rightToLeftWithFade
     ),
   ];
 

@@ -49,4 +49,14 @@ class LoginController extends GetxController{
     this._hasLogin.value = b;
   }
 
+  var _isAgree = true.obs;
+
+  bool get isAgree {
+    return _isAgree.value;
+  }
+
+  void changeAgree(bool b){
+    this._isAgree.value = b;
+  }
+
 }
