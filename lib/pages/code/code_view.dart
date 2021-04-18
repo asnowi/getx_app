@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_app/common/widget/box/verification_box.dart';
+import 'package:getx_app/common/widget/box/verification_box_item.dart';
 import 'package:getx_app/common/widget/input/grid_input.dart';
 import 'package:getx_app/pages/code/code_controller.dart';
 import 'package:getx_app/common/utils/index.dart';
@@ -42,7 +44,13 @@ class CodeView extends GetView<CodeController>{
   }
 
   Widget _buildInput(){
-    return GridInput();
+    return Container(
+      height: 45,
+      child: VerificationBox(
+        count: 4,
+        type: VerificationBoxItemType.underline,
+      ),
+    );
   }
 
   Widget _buildTitle() {
