@@ -27,6 +27,9 @@ class MineController extends GetxController{
 
   @override
   void onInit() {
+
+    changeLogin(getUser() != null);
+
     _subscription = EventBusUtils.listen((event) {
       LogUtils.GGQ('event:${event.code}');
       if(event.code == EventCode.EVENT_LOGIN){

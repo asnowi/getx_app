@@ -61,7 +61,7 @@ class _GridInputState extends State<GridInput> {
                       ),
                       onChanged: (text) {//内容改变的回调
                         if(text.isNotEmpty){
-                          selectedIndex(1);
+                          selectedIndex(0);
                         }
                       },
                       onSubmitted: (text) {//内容提交(按回车)的回调
@@ -107,7 +107,7 @@ class _GridInputState extends State<GridInput> {
                       ),
                       onChanged: (text) {//内容改变的回调
                         if(text.isNotEmpty){
-                          selectedIndex(2);
+                          selectedIndex(1);
                         }
                       },
                       onSubmitted: (text) {//内容提交(按回车)的回调
@@ -153,7 +153,7 @@ class _GridInputState extends State<GridInput> {
                       ),
                       onChanged: (text) {//内容改变的回调
                         if(text.isNotEmpty){
-                          selectedIndex(3);
+                          selectedIndex(2);
                         }
                       },
                       onSubmitted: (text) {//内容提交(按回车)的回调
@@ -199,7 +199,7 @@ class _GridInputState extends State<GridInput> {
                       ),
                       onChanged: (text) {//内容改变的回调
                         if(text.isNotEmpty){
-                          selectedIndex(4);
+                          selectedIndex(3);
                         }
                       },
                       onSubmitted: (text) {//内容提交(按回车)的回调
@@ -216,9 +216,6 @@ class _GridInputState extends State<GridInput> {
 
 
   void selectedIndex(int index){
-    focusList.forEach((element) {
-      element = false;
-      focusList[index] = true;
-    });
+      LogUtils.GGQ('index->${index}');
   }
 }
