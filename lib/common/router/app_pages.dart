@@ -11,6 +11,8 @@ import 'package:getx_app/pages/login/login_binding.dart';
 import 'package:getx_app/pages/login/login_view.dart';
 import 'package:getx_app/pages/resetPwd/resetPwd_binding.dart';
 import 'package:getx_app/pages/resetPwd/resetPwd_view.dart';
+import 'package:getx_app/pages/userIDCard/userIDCard_binding.dart';
+import 'package:getx_app/pages/userIDCard/userIDCard_view.dart';
 
 part 'app_routes.dart';
 class AppPages {
@@ -52,6 +54,14 @@ class AppPages {
         name: AppRoutes.resetPwd,
         page: () => ResetPwdView(),
         binding: ResetPwdBinding(),
+        transitionDuration: Duration(milliseconds: 300),
+        transition: Transition.rightToLeftWithFade
+    ),
+
+    GetPage(
+        name: AppRoutes.userIDCard,
+        page: () => UserIDCardView(),
+        binding: UserIDCardBinding(),
         transitionDuration: Duration(milliseconds: 300),
         transition: Transition.rightToLeftWithFade
     ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_app/common/router/app_pages.dart';
 import 'package:getx_app/common/utils/index.dart';
 import 'package:getx_app/common/widget/refresh/refresh.dart';
 import 'package:getx_app/pages/main/main_controller.dart';
@@ -90,9 +91,6 @@ class MainView extends GetView<MainController> {
 
 
 
-
-
-
   void _onRefresh() {
     DelayedUtil.delayed(() {
       if(controller.refreshController.isRefresh){
@@ -139,7 +137,23 @@ class MainView extends GetView<MainController> {
         ),
       ),
       onTap: (){
-        Get.snackbar('', '${index}');
+        switch (index){
+          case 1:
+              Get.toNamed(AppRoutes.userIDCard);
+            break;
+          case 2:
+
+            break;
+          case 3:
+
+            break;
+          case 4:
+
+            break;
+          default:{
+            LogUtils.GGQ('未匹配到->>${index}');
+          }
+        }
       },
     );
   }
