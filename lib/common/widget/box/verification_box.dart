@@ -23,7 +23,9 @@ class VerificationBox extends StatefulWidget {
         this.cursorWidth = 2,
         this.cursorColor,
         this.cursorIndent = 10,
-        this.cursorEndIndent = 10});
+        this.cursorEndIndent = 10,
+        @required this.controller
+      });
 
   ///
   /// 几位验证码，一般6位，还有4位的
@@ -110,12 +112,13 @@ class VerificationBox extends StatefulWidget {
   ///
   final double cursorEndIndent;
 
+  final TextEditingController controller;
+
   @override
   State<StatefulWidget> createState() => _VerificationBox();
 }
 
 class _VerificationBox extends State<VerificationBox> {
-  TextEditingController _controller;
 
   FocusNode _focusNode;
 
@@ -126,7 +129,6 @@ class _VerificationBox extends State<VerificationBox> {
     List.generate(widget.count, (index) {
       _contentList.add('');
     });
-    _controller = TextEditingController();
     _focusNode = FocusNode();
     super.initState();
   }
@@ -153,11 +155,11 @@ class _VerificationBox extends State<VerificationBox> {
                       decoration: widget.decoration,
                       borderRadius: widget.borderRadius,
                       borderWidth: widget.borderWidth,
-                      borderColor: (_controller.text.length == index
+                      borderColor: (widget.controller.text.length == index
                           ? widget.focusBorderColor
                           : widget.borderColor) ??
                           widget.borderColor,
-                      showCursor: widget.showCursor && _controller.text.length == index,
+                      showCursor: widget.showCursor && widget.controller.text.length == index,
                       cursorColor: widget.cursorColor,
                       cursorWidth: widget.cursorWidth,
                       cursorIndent: widget.cursorIndent,
@@ -177,7 +179,7 @@ class _VerificationBox extends State<VerificationBox> {
   ///
   _buildTextField() {
     return TextField(
-      controller: _controller,
+      controller: widget.controller,
       focusNode: _focusNode,
       decoration: InputDecoration(
         border: UnderlineInputBorder(

@@ -48,7 +48,8 @@ dependencies:
   pull_to_refresh: ^1.6.5
   # 底部弹出框
   modal_bottom_sheet: ^2.0.0
-
+  # 常用工具库
+  flustars: ^2.0.1
 
 dev_dependencies:
   flutter_test:
