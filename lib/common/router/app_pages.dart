@@ -9,6 +9,8 @@ import 'package:getx_app/pages/home/home_binding.dart';
 import 'package:getx_app/pages/home/home_view.dart';
 import 'package:getx_app/pages/login/login_binding.dart';
 import 'package:getx_app/pages/login/login_view.dart';
+import 'package:getx_app/pages/resetPwd/resetPwd_binding.dart';
+import 'package:getx_app/pages/resetPwd/resetPwd_view.dart';
 
 part 'app_routes.dart';
 class AppPages {
@@ -42,6 +44,14 @@ class AppPages {
         name: AppRoutes.code,
         page: () => CodeView(),
         binding: CodeBinding(),
+        transitionDuration: Duration(milliseconds: 300),
+        transition: Transition.rightToLeftWithFade
+    ),
+
+    GetPage(
+        name: AppRoutes.resetPwd,
+        page: () => ResetPwdView(),
+        binding: ResetPwdBinding(),
         transitionDuration: Duration(milliseconds: 300),
         transition: Transition.rightToLeftWithFade
     ),

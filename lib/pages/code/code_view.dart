@@ -128,7 +128,6 @@ class CodeView extends GetView<CodeController>{
   }
 
   Widget _buildSubTitle() {
-    //
     return Container(
       padding: EdgeInsets.only(top: 3, bottom: 30),
       alignment: Alignment.centerLeft,
