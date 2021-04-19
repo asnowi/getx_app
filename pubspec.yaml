@@ -50,6 +50,8 @@ dependencies:
   modal_bottom_sheet: ^2.0.0
   # 常用工具库
   flustars: ^2.0.1
+  # 动画
+  lottie: ^1.0.1
 
 dev_dependencies:
   flutter_test:
@@ -72,7 +74,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/images/
-#    - assets/json/
+    - assets/json/
 #    - assets/video/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

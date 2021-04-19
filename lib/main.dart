@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
           hideFooterWhenNotFull: false, // Disable pull-up to load more functionality when Viewport is less than one screen
           enableBallisticLoad: true, // trigger load more by BallisticScrollActivity
           child: GetMaterialApp(
-            title: 'Get Demo',
+            title: '平安电车',
             debugShowCheckedModeBanner: false,
             enableLog: true,
             // logWriterCallback: Logger.write,

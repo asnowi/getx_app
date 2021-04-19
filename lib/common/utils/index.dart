@@ -7,4 +7,5 @@ export 'image_loader.dart';
 export 'log.dart';
 export 'regex.dart';
 export 'format.dart';
+export 'delayed_util.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
