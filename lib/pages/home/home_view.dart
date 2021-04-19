@@ -65,33 +65,42 @@ class HomeView extends GetView<HomeController> {
 
   Widget _buildBottomAppBar(BuildContext context) {
     final itemWidth = Get.width /2;
+    final itemHeight = 48.h;
     return BottomAppBar(
       elevation: 2,
       child: Row(
         children: [
-          SizedBox(height: 48, width: itemWidth, child: _buildItemBar(0)),
-          SizedBox(height: 48, width: itemWidth, child: _buildItemBar(1)),
+          SizedBox(height: itemHeight, width: itemWidth, child: _buildItemBar(0,itemWidth,itemHeight)),
+          SizedBox(height: itemHeight, width: itemWidth, child: _buildItemBar(1,itemWidth,itemHeight)),
         ],
       ),
     );
   }
 
-  Widget _buildItemBar(int index){
+  Widget _buildItemBar(int index,double width,double height){
     return Center(
       child: InkWell(
-        borderRadius: BorderRadius.circular(48),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Obx(() => Icon(controller.currentIndex == index ? _selectedIcon[index]: _defaultIcon[index],color: controller.currentIndex == index ? Colors.blue: Colors.black54,size: 19,)),
-            Obx(() => Text(_textList[index],style: TextStyle(
-              fontSize: 11,
-              fontWeight: FontWeight.bold,
-              color: controller.currentIndex == index ? Colors.blue: Colors.black54,
-            )
-            ))
-          ],
+        borderRadius: BorderRadius.circular(4),
+        child: Container(
+          width: width,
+          height: height,
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Obx(() => Icon(controller.currentIndex == index ? _selectedIcon[index]: _defaultIcon[index],color: controller.currentIndex == index ? Colors.blue: Colors.black54,size: 19,)),
+              Obx(() => Text(_textList[index],style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.bold,
+                color: controller.currentIndex == index ? Colors.blue: Colors.black54,
+              )
+              ))
+            ],
+          ),
         ),
+        splashColor: Colors.blue[50],
+        focusColor: Colors.blue[50],
+        highlightColor: Colors.blue[50],
         onTap: () {
           controller.selectedItem(index);
           _pageController.animateToPage(index, duration: Duration(milliseconds: 300), curve: Curves.fastOutSlowIn);//跳转动画
