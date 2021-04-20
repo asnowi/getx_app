@@ -33,8 +33,8 @@ class UserIDCardView extends GetView<UserIDCardController>{
             child: Column(
               children: [
                 _buildTop(),
-                _buildIDCardA(),
-                _buildIDCardB(),
+                _buildIDCardA(context),
+                _buildIDCardB(context),
                 _buildDivider(),
                 _buildExample(),
                 _buildNext()
@@ -56,7 +56,7 @@ class UserIDCardView extends GetView<UserIDCardController>{
     );
   }
 
-  Widget _buildIDCardA(){
+  Widget _buildIDCardA(BuildContext context){
     return InkWell(
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 10),
@@ -77,12 +77,12 @@ class UserIDCardView extends GetView<UserIDCardController>{
       ),
       onTap: (){
         //Get.snackbar('', '身份证正面');
-        controller.applyPermissions();
+        controller.applyImagePicker(context,1);
       },
     );
   }
 
-  Widget _buildIDCardB(){
+  Widget _buildIDCardB(BuildContext context){
     return InkWell(
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 10),
@@ -103,7 +103,7 @@ class UserIDCardView extends GetView<UserIDCardController>{
       ),
       onTap: (){
         //Get.snackbar('', '身份证反面');
-        controller.applyPermissions();
+        controller.applyImagePicker(context,2);
       },
     );
   }
