@@ -32,18 +32,8 @@ class FindPwdController extends GetxController{
     }
   }
 
-  StreamSubscription<CommonEvent> _subscription;
-
   @override
   void onInit() {
-    //监听页面并关闭
-    _subscription = EventBusUtils.listen((event) {
-      LogUtils.GGQ('event:${event.code}');
-      if(event.code == EventCode.EVENT_BACK_LOGIN){
-        LogUtils.GGQ('找回密码页面返回');
-        Get.back();
-      }
-    });
     super.onInit();
   }
 
@@ -74,10 +64,6 @@ class FindPwdController extends GetxController{
 
   @override
   void dispose() {
-    if(_subscription != null){
-      LogUtils.GGQ('找回密码页面 event 关闭');
-      _subscription.cancel();
-    }
     super.dispose();
   }
 

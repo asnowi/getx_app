@@ -57,42 +57,54 @@ class UserIDCardView extends GetView<UserIDCardController>{
   }
 
   Widget _buildIDCardA(){
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 10),
-      width: 0.62.sw,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('身份证正面',style: TextStyle(
-              fontSize: 14,
-              color: Colors.grey
-          ),),
-          Padding(padding: EdgeInsets.symmetric(vertical: 4)),
-          AspectRatio(aspectRatio: 16.0/9.0,child: Container(
-            child: Image.asset(AssetsProvider.imagePath('id_main'),fit: BoxFit.cover,),
-          ),)
-        ],
+    return InkWell(
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 10),
+        width: 0.62.sw,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('身份证正面',style: TextStyle(
+                fontSize: 14,
+                color: Colors.grey
+            ),),
+            Padding(padding: EdgeInsets.symmetric(vertical: 4)),
+            AspectRatio(aspectRatio: 16.0/9.0,child: Container(
+              child: Image.asset(AssetsProvider.imagePath('id_main'),fit: BoxFit.cover,),
+            ),)
+          ],
+        ),
       ),
+      onTap: (){
+        //Get.snackbar('', '身份证正面');
+        controller.applyPermissions();
+      },
     );
   }
 
   Widget _buildIDCardB(){
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 10),
-      width: 0.62.sw,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('身份证反面',style: TextStyle(
-              fontSize: 14,
-              color: Colors.grey
-          ),),
-          Padding(padding: EdgeInsets.symmetric(vertical: 4)),
-          AspectRatio(aspectRatio: 16.0/9.0,child: Container(
-            child: Image.asset(AssetsProvider.imagePath('id_sub'),fit: BoxFit.cover,),
-          ),)
-        ],
+    return InkWell(
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 10),
+        width: 0.62.sw,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('身份证反面',style: TextStyle(
+                fontSize: 14,
+                color: Colors.grey
+            ),),
+            Padding(padding: EdgeInsets.symmetric(vertical: 4)),
+            AspectRatio(aspectRatio: 16.0/9.0,child: Container(
+              child: Image.asset(AssetsProvider.imagePath('id_sub'),fit: BoxFit.cover,),
+            ),)
+          ],
+        ),
       ),
+      onTap: (){
+        //Get.snackbar('', '身份证反面');
+        controller.applyPermissions();
+      },
     );
   }
 

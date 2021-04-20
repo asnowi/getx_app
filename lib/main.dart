@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/common/router/app_pages.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
             // locale: TranslationService.locale,
             // fallbackLocale: TranslationService.fallbackLocale,
             // translations: TranslationService(),
+            builder: EasyLoading.init(),
           ),
         ),
     );

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_app/common/config/const.dart';
 import 'package:getx_app/common/utils/index.dart';
 
 class ResetPwdController extends GetxController{
@@ -68,9 +67,6 @@ class ResetPwdController extends GetxController{
     }
 
     //完成
-    // 通过 event bus 逐个关闭之前的页面 直到登录页
-    final event = CommonEvent(EventCode.EVENT_BACK_LOGIN);
-    EventBusUtils.send(event);
     Get.back();
   }
 

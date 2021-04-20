@@ -61,7 +61,7 @@ class CodeView extends GetView<CodeController>{
         focusBorderColor: Colors.grey,
         onSubmitted: (value){
           Get.snackbar('', '${value}');
-          controller.inputSubmitted(value);
+          controller.onSubmitted(value,controller.phone);
         },
       ),
     );
@@ -83,24 +83,23 @@ class CodeView extends GetView<CodeController>{
               style: TextStyle(color: Colors.blue, fontSize: 12),
               children: [
                 TextSpan(
-                  text: "秒后",
+                  text: '秒后',
                   style: TextStyle(color: Colors.grey, fontSize: 12),
                 ),
+
                 TextSpan(
-                    text: "重新发送",
+                    text: '重新发送',
                     style: TextStyle(
                         color: controller.sendColor,
                         fontSize: 12,
                         decoration: TextDecoration.none),
-                        recognizer: TapGestureRecognizer() ..onTap = () async {
+                        recognizer: TapGestureRecognizer() ..onTap = controller.isAllow? () {
                           //Get.snackbar('','重新发送');
-                          if(!controller.controller.text.isBlank){
-                             controller.inputSubmitted(controller.controller.text);
-                          }
-                        }
+                          controller.sendCodeByPhone(controller.phone);
+                        }: null,
                 ),
                 TextSpan(
-                  text: "验证码",
+                  text: '验证码',
                   style: TextStyle(color: Colors.grey, fontSize: 12),
                 ),
               ],
