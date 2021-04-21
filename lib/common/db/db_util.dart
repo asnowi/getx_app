@@ -32,8 +32,7 @@ class DBUtil{
   static Future<DBUtil> getInstance() async {
     if (instance == null) {
       instance = DBUtil();
-      await Hive.initFlutter();
-
+      // await Hive.initFlutter();
       //
       instance.userBox = await Hive.openBox('user');
     }

@@ -67,7 +67,7 @@ class HomeView extends GetView<HomeController> {
     final itemWidth = Get.width /2;
     final itemHeight = 48.h;
     return BottomAppBar(
-      elevation: 2,
+      elevation: 4.4,
       child: Row(
         children: [
           SizedBox(height: itemHeight, width: itemWidth, child: _buildItemBar(0,itemWidth,itemHeight)),

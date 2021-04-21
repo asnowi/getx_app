@@ -1,5 +1,4 @@
 
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/pages/code/code_binding.dart';
 import 'package:getx_app/pages/code/code_view.dart';
@@ -13,14 +12,29 @@ import 'package:getx_app/pages/ownerInfo/ownerInfo_binding.dart';
 import 'package:getx_app/pages/ownerInfo/ownerInfo_view.dart';
 import 'package:getx_app/pages/resetPwd/resetPwd_binding.dart';
 import 'package:getx_app/pages/resetPwd/resetPwd_view.dart';
+import 'package:getx_app/pages/splash/splash_view.dart';
 import 'package:getx_app/pages/userIDCard/userIDCard_binding.dart';
 import 'package:getx_app/pages/userIDCard/userIDCard_view.dart';
+import 'package:getx_app/pages/welcome/welcome_binding.dart';
+import 'package:getx_app/pages/welcome/welcome_view.dart';
 
 part 'app_routes.dart';
 class AppPages {
-  static const INITIAL = AppRoutes.home;
+  static const INITIAL = AppRoutes.splash;
 
   static final List<GetPage> routes = [
+
+    GetPage(
+        name: AppRoutes.splash,
+        page: () => SplashView(),
+    ),
+
+    GetPage(
+      name: AppRoutes.welcome,
+      page: () => WelcomeView(),
+      binding: WelcomeBinding(),
+      transition: Transition.rightToLeftWithFade
+    ),
 
     GetPage(
       name: AppRoutes.login,
@@ -33,7 +47,6 @@ class AppPages {
       name: AppRoutes.home,
       page: () => HomeView(),
       binding: HomeBinding(),
-      transitionDuration: Duration(milliseconds: 300),
     ),
 
     GetPage(

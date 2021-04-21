@@ -1,15 +1,20 @@
 import 'dart:io';
 
+import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:getx_app/common/config/const.dart';
 import 'package:getx_app/common/db/index.dart';
 import 'package:getx_app/common/utils/index.dart';
 import 'package:lottie/lottie.dart';
+import 'package:flutter_baidu_mapapi_base/flutter_baidu_mapapi_base.dart' show BMFMapSDK, BMF_COORD_TYPE;
 
 class Global{
   /// 是否 release
   static bool get isRelease => bool.fromEnvironment("dart.vm.product");
+
+  static bool hasHome = false;
 
   /// 是否 ios
   static bool isIOS = Platform.isIOS;
@@ -24,6 +29,12 @@ class Global{
   static Future init() async {
     // 运行初始
     WidgetsFlutterBinding.ensureInitialized();
+
+    // 工具初始
+    await StorageUtil.init();
+
+    // 第一次打开应用
+    hasHome = StorageUtil().getBool(SaveInfoKey.HAS_HOME);
 
     // hive
     await DBUtil.install();
@@ -67,6 +78,17 @@ class Global{
         child: Lottie.asset(AssetsProvider.lottiePath('loading')),
       )
       ..dismissOnTap = false;
+
+
+    if (isAndroid) {
+      // BMFMapSDK.setCoordType(BMF_COORD_TYPE.BD09LL);
+      BMFMapSDK.setCoordType(BMF_COORD_TYPE.BD09LL);
+      LogUtils.GGQ('--百度地图->>>>android<<<---');
+    }else if (isIOS) {
+      //BMFMapSDK.setApiKeyAndCoordType('替换为百度ios-AK', BMF_COORD_TYPE.BD09LL);
+      //LocationFlutterPlugin.setApiKey("替换为百度ios-AK");
+      LogUtils.GGQ('--百度地图->>>>ios<<<---');
+    }
 
   }
 

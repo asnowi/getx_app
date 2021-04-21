@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
             // fallbackLocale: TranslationService.fallbackLocale,
             // translations: TranslationService(),
             builder: EasyLoading.init(),
+
           ),
         ),
     );

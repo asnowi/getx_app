@@ -6,7 +6,7 @@ buildscript {
         maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         google()
         // jcenter()
-        mavenCentral()
+//        mavenCentral()
         maven{ url 'https://maven.aliyun.com/repository/releases'}
         maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
 //        google()
@@ -24,7 +24,8 @@ allprojects {
 //        google()
 //        jcenter()
         google()
-        //jcenter()
+//        mavenCenral()
+        jcenter()
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
         maven { url "https://jitpack.io" }
         maven{ url 'https://maven.aliyun.com/repository/releases'}

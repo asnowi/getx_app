@@ -34,32 +34,67 @@ dependencies:
   dio: ^4.0.0
   # 屏幕适配
   flutter_screenutil: ^5.0.0
-  # 存储方案
-  hive: ^2.0.1
-  hive_flutter: ^1.0.0
-  hive_generator: ^1.0.1
+
+  # storage
+  shared_preferences: ^2.0.5
+
   # 路径查寻
   path_provider: ^2.0.1
-  # image loader
-  cached_network_image: ^3.0.0
+
   # event bus
   event_bus: ^2.0.0
   # 下拉刷新
   pull_to_refresh: ^1.6.5
   # 底部弹出框
   modal_bottom_sheet: ^2.0.0
-  # 常用工具库
-  flustars: ^2.0.1
-  # 动画
-  lottie: ^1.0.1
-  # 权限管理
-  permission_handler: ^6.1.3
+
   # loading dialog
   flutter_easyloading: ^3.0.0
   # 相册
 #  image_picker: ^0.7.4
   images_picker: ^1.2.0
-  flutter_luban: ^0.1.12
+
+#  ---依赖百度定位库冲突的 开始--
+#  # 权限管理
+#  permission_handler: ^6.1.3
+#  # 鲁班压缩
+#  flutter_luban: ^0.1.12
+#  # 动画
+#  lottie: ^1.0.1
+#  # 常用工具库
+#  flustars: ^2.0.1
+#  # image loader
+#  cached_network_image: ^3.0.0
+#  # 存储方案
+#  hive: ^2.0.1
+#  hive_flutter: ^1.0.0
+#  hive_generator: ^1.0.1
+#  ---依赖百度定位库冲突的 结束--
+
+  # 权限管理
+  permission_handler: ^5.1.0+2
+  # 鲁班压缩
+  flutter_luban: ^0.1.11
+  # 动画
+  lottie: ^0.7.0+1
+  # 常用工具库
+  flustars: ^0.3.3
+  # image loader
+  cached_network_image: ^2.5.1
+  # 存储方案
+  hive: ^1.4.4+1
+  hive_flutter: ^0.2.1
+  hive_generator: ^0.8.2
+
+  #百度地图
+  # 定位
+  flutter_bmflocation: ^1.0.4
+  # 基础地图
+  flutter_baidu_mapapi_map: ^2.0.1
+  # 检索
+  flutter_baidu_mapapi_search: ^2.0.1
+  # 计算工具
+  flutter_baidu_mapapi_utils: ^2.0.1
 
 
 dev_dependencies:

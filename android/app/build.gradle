@@ -25,27 +25,90 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+
 android {
     compileSdkVersion 30
-
+    useLibrary 'org.apache.http.legacy'
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.maple.getx_app"
+//        applicationId "com.maple.getx_app"
+        applicationId "com.maple.baidu"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+
+//        ndk {
+//            //选择要添加的对应cpu类型的.so库。
+//            abiFilters "armeabi-v7a" //,"armeabi" "arm64-v8a", "x86", "mips"
+//        }
+    }
+
+    // 开启 Java 8 支持
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+        /**
+         * Java源文件编码。
+         */
+        encoding "UTF-8"
+        incremental true
+    }
+
+    kotlinOptions {
+        jvmTarget = "${JavaVersion.VERSION_1_8}"
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file(keystoreProperties.RELEASE_STOREFILE)
+            storePassword keystoreProperties.RELEASE_STORE_PASSWORD
+            keyAlias keystoreProperties.RELEASE_KEY_ALIAS
+            keyPassword keystoreProperties.RELEASE_KEY_PASSWORD
+        }
+
+        release {
+
+            storeFile file(keystoreProperties.RELEASE_STOREFILE)
+            storePassword keystoreProperties.RELEASE_STORE_PASSWORD
+            keyAlias keystoreProperties.RELEASE_KEY_ALIAS
+            keyPassword keystoreProperties.RELEASE_KEY_PASSWORD
+        }
     }
 
     buildTypes {
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
+
+        debug {
+            minifyEnabled false
             signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            //在此添加：
+//            lintOptions {
+//                checkReleaseBuilds false
+//                abortOnError false
+//            }
+            minifyEnabled true   //移除所有未使用的方法、指令以减小 classes.dex 文件
+            shrinkResources  true     //移除所有在工程中没有用到的资源
+            useProguard true //开启压缩
+            signingConfig signingConfigs.release//需要使用正式证书签名，才能发布到fir.im
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
