@@ -7,4 +7,5 @@ abstract class AppRoutes {
   static const code = '/code';
   static const resetPwd = '/resetPwd';
   static const userIDCard = '/userIDCard';
+  static const ownerInfo = '/ownerInfo';
 }

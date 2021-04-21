@@ -13,6 +13,11 @@
         android:networkSecurityConfig="@xml/public_network_security_config"
         android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_launcher">
+        <!-- 全面屏-->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.1" />
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

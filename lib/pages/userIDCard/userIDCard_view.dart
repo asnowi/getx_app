@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/common/utils/assets.dart';
@@ -70,14 +72,17 @@ class UserIDCardView extends GetView<UserIDCardController>{
             ),),
             Padding(padding: EdgeInsets.symmetric(vertical: 4)),
             AspectRatio(aspectRatio: 16.0/9.0,child: Container(
-              child: Image.asset(AssetsProvider.imagePath('id_main'),fit: BoxFit.cover,),
+              child: GetBuilder<UserIDCardController>(
+                id: 'idCardA',
+                builder: (_) => controller.idCardA.isEmpty? Image.asset(AssetsProvider.imagePath('id_main'),fit: BoxFit.cover,): Image.file(File(controller.idCardA),fit: BoxFit.cover,)
+              ),
             ),)
           ],
         ),
       ),
       onTap: (){
         //Get.snackbar('', '身份证正面');
-        controller.applyImagePicker(context,1);
+        controller.applyImagePicker(context,controller.TYPE_IDCARD_A);
       },
     );
   }
@@ -96,14 +101,17 @@ class UserIDCardView extends GetView<UserIDCardController>{
             ),),
             Padding(padding: EdgeInsets.symmetric(vertical: 4)),
             AspectRatio(aspectRatio: 16.0/9.0,child: Container(
-              child: Image.asset(AssetsProvider.imagePath('id_sub'),fit: BoxFit.cover,),
+              child: GetBuilder<UserIDCardController>(
+                id: 'idCardB',
+                builder: (_) => controller.idCardB.isEmpty? Image.asset(AssetsProvider.imagePath('id_sub'),fit: BoxFit.cover,): Image.file(File(controller.idCardB),fit: BoxFit.cover,)
+              )
             ),)
           ],
         ),
       ),
       onTap: (){
         //Get.snackbar('', '身份证反面');
-        controller.applyImagePicker(context,2);
+        controller.applyImagePicker(context,controller.TYPE_IDCARD_B);
       },
     );
   }
@@ -163,7 +171,8 @@ class UserIDCardView extends GetView<UserIDCardController>{
             side: BorderSide(width: 1, color: Colors.grey[200]),
           ),
           onPressed: (){
-            Get.snackbar('', '请上传身份证');
+            //Get.snackbar('', '请上传身份证');
+            controller.onNext();
           },
           child: Text('下一步',style: TextStyle(color: Colors.black54,fontSize: 14),)
       ),
