@@ -80,4 +80,10 @@ class BDMapController extends GetxController{
       mapController.setZoomTo(18);
     }
   }
+
+  @override
+  void dispose() {
+    stopLocation();
+    super.dispose();
+  }
 }

@@ -58,5 +58,5 @@ class HomeController extends GetxController{
       }
     });
   }
-
+//轨迹
 }
