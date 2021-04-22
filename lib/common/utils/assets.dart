@@ -9,4 +9,9 @@ class AssetsProvider{
   static String lottiePath(String name){
     return 'assets/json/$name.json';
   }
+
+  /// 本地json 数据
+  static String loadJson(String name){
+    return 'assets/data/$name.json';
+  }
 }

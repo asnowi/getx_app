@@ -110,7 +110,8 @@ class MineView extends GetView<MineController> {
                   highlightColor: Colors.blue[50],
                   onTap: (){
                     if(controller.isLogin){
-                      Get.snackbar('', '修改密码');
+                     // Get.snackbar('', '修改密码');
+                      Get.toNamed(AppRoutes.locus);
                     }else{
                       Get.toNamed(AppRoutes.login);
                     }

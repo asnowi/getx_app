@@ -8,6 +8,8 @@ import 'package:getx_app/pages/findPwd/findPwd_binding.dart';
 import 'package:getx_app/pages/findPwd/findPwd_view.dart';
 import 'package:getx_app/pages/home/home_binding.dart';
 import 'package:getx_app/pages/home/home_view.dart';
+import 'package:getx_app/pages/locus/locus_binding.dart';
+import 'package:getx_app/pages/locus/locus_view.dart';
 import 'package:getx_app/pages/login/login_binding.dart';
 import 'package:getx_app/pages/login/login_view.dart';
 import 'package:getx_app/pages/ownerInfo/ownerInfo_binding.dart';
@@ -95,6 +97,14 @@ class AppPages {
         name: AppRoutes.bdmap,
         page: () => BDMapView(),
         binding: BDMapBinding(),
+        transitionDuration: Duration(milliseconds: 300),
+        transition: Transition.rightToLeftWithFade
+    ),
+
+    GetPage(
+        name: AppRoutes.locus,
+        page: () => LocusView(),
+        binding: LocusBinding(),
         transitionDuration: Duration(milliseconds: 300),
         transition: Transition.rightToLeftWithFade
     ),
