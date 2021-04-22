@@ -1,5 +1,7 @@
 
 import 'package:get/get.dart';
+import 'package:getx_app/pages/bdmap/bdmap_binding.dart';
+import 'package:getx_app/pages/bdmap/bdmap_view.dart';
 import 'package:getx_app/pages/code/code_binding.dart';
 import 'package:getx_app/pages/code/code_view.dart';
 import 'package:getx_app/pages/findPwd/findPwd_binding.dart';
@@ -85,6 +87,14 @@ class AppPages {
         name: AppRoutes.ownerInfo,
         page: () => OwnerInfoView(),
         binding: OwnerInfoBinding(),
+        transitionDuration: Duration(milliseconds: 300),
+        transition: Transition.rightToLeftWithFade
+    ),
+
+    GetPage(
+        name: AppRoutes.bdmap,
+        page: () => BDMapView(),
+        binding: BDMapBinding(),
         transitionDuration: Duration(milliseconds: 300),
         transition: Transition.rightToLeftWithFade
     ),

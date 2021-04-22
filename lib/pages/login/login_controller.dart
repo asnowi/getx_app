@@ -59,4 +59,11 @@ class LoginController extends GetxController{
     this._isAgree.value = b;
   }
 
+
+  var _isClose = false.obs;
+  bool get isClose => _isClose.value;
+  void changeClose(bool b){
+    this._isClose.value = b;
+  }
+
 }

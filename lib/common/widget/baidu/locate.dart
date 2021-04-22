@@ -36,8 +36,8 @@ void _setLocOption() {
   androidOption.setIsNeedLocationDescribe(false); // 设置是否需要返回位置描述
   androidOption.setOpenGps(true); // 设置是否需要使用gps
   androidOption.setLocationMode(LocationMode.Hight_Accuracy); // 设置定位模式
-  // androidOption.setScanspan(1500); // 设置发起定位请求时间间隔
-  androidOption.setScanspan(6000); // 设置发起定位请求时间间隔
+  androidOption.setScanspan(3000); // 设置发起定位请求时间间隔
+  // androidOption.setScanspan(6000); // 设置发起定位请求时间间隔
 
   Map androidMap = androidOption.getMap();
 

@@ -10,4 +10,5 @@ abstract class AppRoutes {
   static const resetPwd = '/resetPwd';
   static const userIDCard = '/userIDCard';
   static const ownerInfo = '/ownerInfo';
+  static const bdmap = '/bdmap';
 }

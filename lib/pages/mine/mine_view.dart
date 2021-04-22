@@ -78,7 +78,8 @@ class MineView extends GetView<MineController> {
                   highlightColor: Colors.blue[50],
                   onTap: (){
                     if(controller.isLogin){
-                      Get.snackbar('', '我的资料');
+                      // Get.snackbar('', '我的资料');
+                      Get.toNamed(AppRoutes.bdmap);
                     }else{
                       Get.toNamed(AppRoutes.login);
                     }

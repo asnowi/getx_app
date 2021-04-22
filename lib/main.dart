@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
             initialRoute: AppPages.INITIAL,
             getPages: AppPages.routes,
             unknownRoute: AppPages.unknownRoute,
+
             // locale: TranslationService.locale,
             // fallbackLocale: TranslationService.fallbackLocale,
             // translations: TranslationService(),

@@ -22,15 +22,23 @@ class LoginView extends GetView<LoginController> {
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () {
-            Get.back();
+        leading: Obx(() =>AnimatedSwitcher(
+          duration: Duration(milliseconds: 300),
+          transitionBuilder: (child, anim) {
+            return ScaleTransition(child: child, scale: anim);
           },
-          icon: Icon(
-            Icons.close,
-            color: Colors.black,
+          child: IconButton(
+            key: UniqueKey(),
+            onPressed: () {
+              controller.changeClose(!controller.isClose);
+              // Get.back();
+            },
+            icon: Icon(
+              controller.isClose? Icons.close:Icons.close,
+              color: Colors.black,
+            ),
           ),
-        ),
+        )),
         actions: <Widget>[
           TextButton(
               onPressed: () {
