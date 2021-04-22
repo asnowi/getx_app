@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_bmflocation/bdmap_location_flutter_plugin.dart';
 import 'package:flutter_bmflocation/flutter_baidu_location_android_option.dart';
 import 'package:flutter_bmflocation/flutter_baidu_location_ios_option.dart';
+import 'package:getx_app/common/utils/index.dart';
 
 StreamSubscription<Map<String, Object>> _locationListener;
 
@@ -18,9 +19,11 @@ getLocate() {
   return _locationPlugin.onResultCallback;
 }
 
-void dispose() {
+void locDispose() {
+  LogUtils.GGQ('停止定位 ->locDispose');
   if (null != _locationListener) {
     _locationListener.cancel(); // 停止定位
+    LogUtils.GGQ('停止定位 ->cancel');
   }
 }
 

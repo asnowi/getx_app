@@ -9,6 +9,22 @@ class BDMapView extends GetView<BDMapController>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        centerTitle: true,
+        elevation: 0.0,
+        leading: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: Icon(
+            Iconfont.backOut,size: 18,
+            color: Colors.grey,
+          ),
+        ),
+      ),
       body: Container(
         width: Get.width,
         height: Get.height,
@@ -36,10 +52,6 @@ class BDMapView extends GetView<BDMapController>{
               ),
               elevation: 5, //阴影
               onPressed: () {
-                // double lat = myLocate['latitude'];
-                // double lng = myLocate['longitude'];
-                // ctl.setCenterCoordinate(BMFCoordinate(lat, lng), true);
-                // ctl.setZoomTo(18);
                 controller.locUserCenter();
               },
             ),

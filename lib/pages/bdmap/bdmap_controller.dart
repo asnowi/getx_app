@@ -41,6 +41,7 @@ class BDMapController extends GetxController{
   void onBaiduLocation(){
     // 设置监听当前位置，更新位置
     var listener = getLocate();
+
     listener().listen((Map<String, Object> result) {
       double latitude = result['latitude'];
       double longitude = result['longitude'];
@@ -84,6 +85,8 @@ class BDMapController extends GetxController{
   @override
   void dispose() {
     stopLocation();
+    locDispose();
+    LogUtils.GGQ('dispose');
     super.dispose();
   }
 }

@@ -30,7 +30,6 @@ class HomeController extends GetxController{
     super.onReady();
   }
 
-
   var _hasLocation = false.obs;
 
   bool get hasLocation => _hasLocation.value;
@@ -55,8 +54,8 @@ class HomeController extends GetxController{
         LogUtils.GGQ('-----经度--->${longitude}');
         LogUtils.GGQ('-----位置--->${address}');
         stopLocation();
+        locDispose();
       }
     });
   }
-//轨迹
 }

@@ -88,4 +88,11 @@ class Iconfont {
     fontFamily: 'iconfont',
     matchTextDirection: true,
   );
+
+  // 地图 返回
+  static const backOut = IconData(
+    0xf30a,
+    fontFamily: 'iconfont',
+    matchTextDirection: true,
+  );
 }
