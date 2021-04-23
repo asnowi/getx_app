@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/common/model/locus_entity.dart';
+import 'package:getx_app/common/utils/car_helper.dart';
 import 'package:getx_app/common/utils/delayed_util.dart';
 import 'package:getx_app/common/utils/index.dart';
 import 'package:getx_app/common/widget/baidu/index.dart';
@@ -14,6 +15,8 @@ class LocusController extends GetxController{
 
   BMFMapController mapController;
   BMFMapOptions mapOptions;
+
+  CarHelper _carHelper;
 
   var _hasLoad = false;
   bool get hasLoad => _hasLoad;
@@ -37,10 +40,6 @@ class LocusController extends GetxController{
     super.onReady();
   }
 
-
-  ///声明变量
-  Timer _timer;
-  int _index = 0;
 
   void loadData(){
     LoadingDialog.show();
@@ -99,7 +98,7 @@ class LocusController extends GetxController{
 
 
           /// 添加Marker
-          List<BMFMarker> markers = [startMarker,carMarker,endMarker];
+          List<BMFMarker> markers = [startMarker,endMarker,carMarker];
           // List<BMFMarker> markers = [];
           // pointList.asMap().forEach((index, value) {
           //   if(index == 0){
@@ -143,7 +142,7 @@ class LocusController extends GetxController{
           // });
 
 
-
+          _carHelper = CarHelper(mapController, pointList, carMarker);
           
         }
       }catch(e){
@@ -153,6 +152,21 @@ class LocusController extends GetxController{
       LoadingDialog.dismiss();
     });
   }
+
+
+  void onCarPlay(){
+    if(_carHelper != null){
+      _carHelper.onStart();
+    }
+  }
+
+  void onRefresh(){
+    if(_carHelper != null){
+      _carHelper.onFinish();
+      _carHelper.onStart();
+    }
+  }
+
 
 
 

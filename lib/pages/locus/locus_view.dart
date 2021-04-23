@@ -30,6 +30,7 @@ class LocusView extends GetView<LocusController>{
         child: Stack(
           children: [
             _buildMap(),
+            _buildController(),
           ],
         ),
       )
@@ -51,6 +52,29 @@ class LocusView extends GetView<LocusController>{
         strokeWidth: 2,
         valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
       ),);
+  }
+
+  Widget _buildController(){
+    return Container(
+      alignment: Alignment.bottomCenter,
+      margin: EdgeInsets.only(bottom: 30.h),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          IconButton(icon: Icon(Iconfont.carPlay,color: Colors.blue,), onPressed: (){
+              Get.snackbar('', '播放');
+              controller.onCarPlay();
+          }),
+          IconButton(icon: Icon(Iconfont.carFresh,color: Colors.blue,), onPressed: (){
+            Get.snackbar('', '重复');
+            controller.onRefresh();
+          }),
+          IconButton(icon: Icon(Iconfont.carUp,color: Colors.blue,), onPressed: (){
+            Get.snackbar('', '加速');
+          }),
+        ],
+      ),
+    );
   }
 
 }

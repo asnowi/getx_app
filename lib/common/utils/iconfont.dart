@@ -95,4 +95,32 @@ class Iconfont {
     fontFamily: 'iconfont',
     matchTextDirection: true,
   );
+
+  // 播放
+  static const carPlay = IconData(
+    0xf2b1,
+    fontFamily: 'iconfont',
+    matchTextDirection: true,
+  );
+
+  // 暂停
+  static const carStop = IconData(
+    0xf2b0,
+    fontFamily: 'iconfont',
+    matchTextDirection: true,
+  );
+
+  // 重新
+  static const carFresh = IconData(
+    0xf2bf,
+    fontFamily: 'iconfont',
+    matchTextDirection: true,
+  );
+
+  // 加速
+  static const carUp = IconData(
+    0xf2d1,
+    fontFamily: 'iconfont',
+    matchTextDirection: true,
+  );
 }
