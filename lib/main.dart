@@ -8,6 +8,9 @@ import 'package:getx_app/common/router/app_pages.dart';
 import 'package:getx_app/global.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
+
+
 Future<void> main() async{
   Global.init().then((value) => runApp(MyApp()));
 }
@@ -30,6 +33,7 @@ class MyApp extends StatelessWidget {
           hideFooterWhenNotFull: false, // Disable pull-up to load more functionality when Viewport is less than one screen
           enableBallisticLoad: true, // trigger load more by BallisticScrollActivity
           child: GetMaterialApp(
+            navigatorKey: navigatorKey,
             title: '平安电车',
             debugShowCheckedModeBanner: false,
             enableLog: true,
