@@ -69,9 +69,9 @@ class LocusView extends GetView<LocusController>{
             Get.snackbar('', '重复');
             controller.onRefresh();
           }),
-          IconButton(icon: Icon(Iconfont.carUp,color: Colors.blue,), onPressed: (){
-            Get.snackbar('', '加速');
-          }),
+          // IconButton(icon: Icon(Iconfont.carUp,color: Colors.blue,), onPressed: (){
+          //   Get.snackbar('', '加速');
+          // }),
         ],
       ),
     );

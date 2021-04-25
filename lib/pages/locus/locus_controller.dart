@@ -1,6 +1,4 @@
-import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/common/model/locus_entity.dart';
@@ -24,7 +22,6 @@ class LocusController extends GetxController{
     this._hasLoad = b;
   }
 
-
    @override
   void onReady() {
      mapOptions = BMFMapOptions(
@@ -40,6 +37,8 @@ class LocusController extends GetxController{
     super.onReady();
   }
 
+
+  // List<List<BMFCoordinate>> list = [];
 
   void loadData(){
     LoadingDialog.show();
@@ -69,24 +68,33 @@ class LocusController extends GetxController{
           mapController.addPolyline(polyline);
           //添加开始和结束标记 marker
           BMFMarker startMarker = BMFMarker(
+              enabled: true,
               position: pointList.first,
               title: '开始',
               identifier: 'startMarker',
-              icon: AssetsProvider.imagePath('gcoding_start'));
+              icon: AssetsProvider.imagePath('gcoding_start'),
+              zIndex: 1
+          );
 
           BMFMarker carMarker = BMFMarker(
+              enabled: true,
               position: pointList.first,
               title: '小车',
               identifier: 'carMarker',
-              icon: AssetsProvider.imagePath('marker_car'));
+              icon: AssetsProvider.imagePath('marker_car'),
+              zIndex: 2
+          );
 
 
           //添加开始和结束标记 marker
           BMFMarker endMarker = BMFMarker(
+              enabled: true,
               position: pointList.last,
               title: '结束',
               identifier: 'endMarker',
-              icon: AssetsProvider.imagePath('gcoding_end'));
+              icon: AssetsProvider.imagePath('gcoding_end'),
+              zIndex: 1
+          );
 
 
           //添加开始和结束标记 marker
@@ -129,21 +137,10 @@ class LocusController extends GetxController{
           mapController.setCenterCoordinate(pointList.first, true);
           mapController.setZoomTo(18);
 
+
           update(['updateMap']);
-
-
-          // _timer = Timer.periodic(Duration(milliseconds: 200), (timer) {
-          //   _index++;
-          //   if(_index < pointList.length){
-          //     carMarker.updatePosition(pointList[_index]);
-          //   } else{
-          //     _timer.cancel();
-          //   }
-          // });
-
-
           _carHelper = CarHelper(mapController, pointList, carMarker);
-          
+
         }
       }catch(e){
         LogUtils.GGQ('error -> ${e}');
@@ -157,6 +154,7 @@ class LocusController extends GetxController{
   void onCarPlay(){
     if(_carHelper != null){
       _carHelper.onStart();
+      // _carHelper.onTest();
     }
   }
 
