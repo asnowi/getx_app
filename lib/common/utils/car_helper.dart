@@ -48,6 +48,7 @@ class CarHelper {
             identifier: 'gcodingMarker',
             icon: AssetsProvider.imagePath('ic_gcoding'),
         );
+
         controller.addMarker(gcodingMarker);
         markerList.add(gcodingMarker);
         //防碰壁

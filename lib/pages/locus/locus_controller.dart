@@ -32,6 +32,7 @@ class LocusController extends GetxController{
        changeHasLoad(true);
        update(['updateMap']);
      }
+
      loadData();
      LogUtils.GGQ('onReady');
     super.onReady();
@@ -95,8 +96,6 @@ class LocusController extends GetxController{
               icon: AssetsProvider.imagePath('gcoding_end'),
               zIndex: 1
           );
-
-
           //添加开始和结束标记 marker
           // BMFMarker pointMarker = BMFMarker(
           //     position: pointList.last,
@@ -136,11 +135,13 @@ class LocusController extends GetxController{
           mapController.addMarkers(markers);
           mapController.setCenterCoordinate(pointList.first, true);
           mapController.setZoomTo(18);
+          mapController.setMapClickedMarkerCallback(callback: (marker) =>{
+            LogUtils.GGQ('---marker->${marker.title}'),
+          });
 
 
           update(['updateMap']);
           _carHelper = CarHelper(mapController, pointList, carMarker);
-
         }
       }catch(e){
         LogUtils.GGQ('error -> ${e}');
