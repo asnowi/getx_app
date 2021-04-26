@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_picker/flutter_picker.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/common/router/app_pages.dart';
 import 'package:getx_app/common/utils/index.dart';
@@ -51,28 +52,20 @@ class OwnerInfoController extends GetxController{
 
 
   ///性别选择器
-  void showChooseGenderDialog(BuildContext context) async {
-    await showModalBottomSheet(
-        context: context,
-        isScrollControlled: true,
-        builder: (BuildContext context) {
-          //56
-          return ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: 0.3.sh),
-            child: ListView.separated(
-              itemCount: _genderList == null ? 0 : _genderList.length,
-              separatorBuilder: (context, index) {
-                return Divider(
-                  height: 0,
-                );
-              },
-              itemBuilder: (context, index) {
-                return Container(
-                );
-              },
-            ),
-          );
-        });
+  void showChooseGenderDialog(BuildContext context) {
+    showPicker(BuildContext context) {
+      Picker picker = Picker(
+          adapter: PickerDataAdapter<String>(pickerdata: _genderList),
+          changeToFirst: true,
+          textAlign: TextAlign.left,
+          columnPadding: const EdgeInsets.all(8.0),
+          onConfirm: (Picker picker, List value) {
+            print(value.toString());
+            print(picker.getSelectedValues());
+          }
+      );
+      // picker.show();
+    }
   }
 
   /// 日期选择器

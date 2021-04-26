@@ -48,6 +48,11 @@ dependencies:
   # 底部弹出框
   modal_bottom_sheet: ^2.0.0
 
+  # Flutter时间选择器(城市选择器，时间选择器，数量选择器)
+  flutter_picker: ^2.0.1
+
+
+
   # loading dialog
   flutter_easyloading: ^3.0.0
   # 相册
