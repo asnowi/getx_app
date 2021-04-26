@@ -106,6 +106,8 @@ dependencies:
   flutter_baidu_mapapi_search: ^2.0.1
   # 计算工具
   flutter_baidu_mapapi_utils: ^2.0.1
+  #
+  flutter_baidu_mapapi_base: ^2.0.1
 
 
 

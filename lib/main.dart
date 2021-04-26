@@ -11,6 +11,10 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
 
 
+
+
+
+
 Future<void> main() async{
   Global.init().then((value) => runApp(MyApp()));
 }
