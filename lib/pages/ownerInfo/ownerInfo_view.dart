@@ -32,13 +32,13 @@ class OwnerInfoView extends GetView<OwnerInfoController>{
         color: Colors.white,
         child: SingleChildScrollView(
           controller: controller.controller,
-          child: _buildInfo(),
+          child: _buildInfo(context),
         ),
       ),
     );
   }
 
-  Widget _buildInfo(){
+  Widget _buildInfo(BuildContext context){
     return Column(
       children: [
         GetBuilder<OwnerInfoController>(
@@ -58,13 +58,12 @@ class OwnerInfoView extends GetView<OwnerInfoController>{
                     body: Container(
                       padding: EdgeInsets.symmetric(horizontal: 20.w),
                       width: Get.width,
-                      color: Colors.white,
                       child: Column(
                         children: [
                           _buildIDCard(),
                           _buildOwnerName(),
-                          _buildGender(),
-                          _buildBirthday(),
+                          _buildGender(context),
+                          _buildBirthday(context),
                           _buildOwnerPhone(),
                           _buildResAddress(),
                           _buildDivider(),
@@ -80,7 +79,6 @@ class OwnerInfoView extends GetView<OwnerInfoController>{
                     body: Container(
                       padding: EdgeInsets.symmetric(horizontal: 20.w),
                       width: Get.width,
-                      color: Colors.white,
                       child: Column(
                         children: [
                           _buildContactName(),
@@ -221,9 +219,8 @@ class OwnerInfoView extends GetView<OwnerInfoController>{
       ),
     );
   }
-  Widget _buildGender(){
+  Widget _buildGender(BuildContext context){
     return Container(
-      padding: controller.itemPadding,
       child: InkWell(
         child: Row(
           children: [
@@ -239,6 +236,7 @@ class OwnerInfoView extends GetView<OwnerInfoController>{
             ),
             Expanded(
               child: Container(
+                padding: controller.itemPadding,
                 child: Row(
                   children: [
                     Expanded(child: Text('男',style: TextStyle(fontSize: 14,color: Colors.black87),)),
@@ -254,14 +252,14 @@ class OwnerInfoView extends GetView<OwnerInfoController>{
         focusColor: Colors.blue[50],
         highlightColor: Colors.blue[50],
         onTap: (){
-          Get.snackbar('', '性别');
+          // Get.snackbar('', '性别');
+          controller.showChooseGenderDialog(context);
         },
       ),
     );
   }
-  Widget _buildBirthday(){
+  Widget _buildBirthday(BuildContext context){
     return Container(
-      padding: controller.itemPadding,
       child: InkWell(
         child: Row(
           children: [
@@ -277,6 +275,7 @@ class OwnerInfoView extends GetView<OwnerInfoController>{
             ),
             Expanded(
               child: Container(
+                padding: controller.itemPadding,
                 child: Row(
                   children: [
                     Expanded(child: Text('1990-10-09',style: TextStyle(fontSize: 14,color: Colors.black87),)),
@@ -292,7 +291,8 @@ class OwnerInfoView extends GetView<OwnerInfoController>{
         focusColor: Colors.blue[50],
         highlightColor: Colors.blue[50],
         onTap: (){
-          Get.snackbar('', '出生日期');
+         // Get.snackbar('', '出生日期');
+          controller.showChooseDateDialog(context);
         },
       ),
     );

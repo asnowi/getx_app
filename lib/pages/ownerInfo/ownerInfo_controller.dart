@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_app/common/router/app_pages.dart';
 import 'package:getx_app/common/utils/index.dart';
 
 class OwnerInfoController extends GetxController{
@@ -46,8 +47,62 @@ class OwnerInfoController extends GetxController{
     }
   }
 
-  void onNext(){
+  List<String> _genderList = ['男','女'];
 
+
+  ///性别选择器
+  void showChooseGenderDialog(BuildContext context) async {
+    await showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        builder: (BuildContext context) {
+          //56
+          return ConstrainedBox(
+            constraints: BoxConstraints(maxHeight: 0.3.sh),
+            child: ListView.separated(
+              itemCount: _genderList == null ? 0 : _genderList.length,
+              separatorBuilder: (context, index) {
+                return Divider(
+                  height: 0,
+                );
+              },
+              itemBuilder: (context, index) {
+                return Container(
+                );
+              },
+            ),
+          );
+        });
+  }
+
+  /// 日期选择器
+  void showChooseDateDialog(BuildContext context) async {
+    await showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        builder: (BuildContext context) {
+          //56
+          return ConstrainedBox(
+            constraints: BoxConstraints(maxHeight: 0.3.sh),
+            child: ListView.separated(
+              itemCount: _genderList == null ? 0 : _genderList.length,
+              separatorBuilder: (context, index) {
+                return Divider(
+                  height: 0,
+                );
+              },
+              itemBuilder: (context, index) {
+                return Container(
+                );
+              },
+            ),
+          );
+        });
+  }
+
+
+  void onNext(){
+    Get.toNamed(AppRoutes.ebikeInfo);
   }
 
 }

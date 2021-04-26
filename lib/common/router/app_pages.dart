@@ -4,6 +4,8 @@ import 'package:getx_app/pages/bdmap/bdmap_binding.dart';
 import 'package:getx_app/pages/bdmap/bdmap_view.dart';
 import 'package:getx_app/pages/code/code_binding.dart';
 import 'package:getx_app/pages/code/code_view.dart';
+import 'package:getx_app/pages/ebikeInfo/ebikeInfo_binding.dart';
+import 'package:getx_app/pages/ebikeInfo/ebikeInfo_view.dart';
 import 'package:getx_app/pages/findPwd/findPwd_binding.dart';
 import 'package:getx_app/pages/findPwd/findPwd_view.dart';
 import 'package:getx_app/pages/home/home_binding.dart';
@@ -89,6 +91,14 @@ class AppPages {
         name: AppRoutes.ownerInfo,
         page: () => OwnerInfoView(),
         binding: OwnerInfoBinding(),
+        transitionDuration: Duration(milliseconds: 300),
+        transition: Transition.rightToLeftWithFade
+    ),
+
+    GetPage(
+        name: AppRoutes.ebikeInfo,
+        page: () => EbikeInfoView(),
+        binding: EbikeInfoBinding(),
         transitionDuration: Duration(milliseconds: 300),
         transition: Transition.rightToLeftWithFade
     ),

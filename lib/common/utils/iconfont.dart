@@ -136,4 +136,10 @@ class Iconfont {
     fontFamily: 'iconfont',
     matchTextDirection: true,
   );
+
+  static const scan = IconData(
+    0xf2ba,
+    fontFamily: 'iconfont',
+    matchTextDirection: true,
+  );
 }
