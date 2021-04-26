@@ -123,4 +123,17 @@ class Iconfont {
     fontFamily: 'iconfont',
     matchTextDirection: true,
   );
+
+  // 亮度
+  static const brightness = IconData(
+    0xf321,
+    fontFamily: 'iconfont',
+    matchTextDirection: true,
+  );
+
+  static const redDot = IconData(
+    0xf32e,
+    fontFamily: 'iconfont',
+    matchTextDirection: true,
+  );
 }

@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -40,7 +39,6 @@ class Global{
     await DBUtil.install();
     dbUtil = await DBUtil.getInstance();
     userInfo = dbUtil.getCurrentUser();
-
     //  android 状态栏为透明的沉浸
     if (isAndroid) {
         SystemUiOverlayStyle systemUiOverlayStyle =

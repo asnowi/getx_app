@@ -198,14 +198,14 @@ class UserIDCardController extends GetxController{
 
 
   void onNext(){
-    if(idCardA.isEmpty){
-      Get.snackbar('', '请上传身份证正面照片');
-      return;
-    }
-    if(idCardB.isEmpty){
-      Get.snackbar('', '请上传身份证反面照片');
-      return;
-    }
+    // if(idCardA.isEmpty){
+    //   Get.snackbar('', '请上传身份证正面照片');
+    //   return;
+    // }
+    // if(idCardB.isEmpty){
+    //   Get.snackbar('', '请上传身份证反面照片');
+    //   return;
+    // }
 
     Get.toNamed(AppRoutes.ownerInfo);
   }
