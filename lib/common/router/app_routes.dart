@@ -13,4 +13,5 @@ abstract class AppRoutes {
   static const bdmap = '/bdmap';
   static const locus = '/locus';
   static const ebikeInfo = '/ebikeInfo';
+  static const scanner = '/scanner';
 }

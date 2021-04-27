@@ -60,7 +60,7 @@ class EbikeInfoView extends GetView<EbikeInfoController>{
                       width: Get.width,
                       child: Column(
                         children: [
-                          _buildDeviceNo(),
+                          _buildDeviceNo(context),
                           _buildEbikeNo(),
                           _buildFrameNo(),
                           _buildEngineNo(),
@@ -123,7 +123,7 @@ class EbikeInfoView extends GetView<EbikeInfoController>{
     );
   }
 
-  Widget _buildDeviceNo(){
+  Widget _buildDeviceNo(BuildContext context){
     return Container(
       padding: EdgeInsets.only(bottom: 8),
       child: Row(
@@ -141,45 +141,50 @@ class EbikeInfoView extends GetView<EbikeInfoController>{
           Expanded(
             child: Row(
               children: [
-                Expanded(child: Container(
-                  child: TextField(
-                    controller: controller.deviceNoController,
-                    maxLines: 1,
-                    autocorrect: true,//是否自动更正
-                    // autofocus: true,//是否自动对焦
-                    textAlign: TextAlign.start,//文本对齐方式
-                    obscureText: false,//是否是密码
-                    keyboardType: TextInputType.numberWithOptions(),
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.black87,
-                    ),
-                    decoration: InputDecoration(
-                      isDense: true,
-                      contentPadding: const EdgeInsets.symmetric(vertical: 6,horizontal: 4),
-                      hintText: '请输入定位设备编号',
-                      hintStyle: TextStyle(
+                Expanded(child: GetBuilder<EbikeInfoController>(
+                  id: 'deviceNo',
+                  builder: (_) =>Container(
+                    child: TextField(
+                      controller: controller.deviceNoController,
+                      maxLines: 1,
+                      autocorrect: true,//是否自动更正
+                      // autofocus: true,//是否自动对焦
+                      textAlign: TextAlign.start,//文本对齐方式
+                      obscureText: false,//是否是密码
+                      keyboardType: TextInputType.numberWithOptions(),
+                      style: TextStyle(
                         fontSize: 14,
-                        color: Colors.grey,
+                        color: Colors.black87,
                       ),
+                      decoration: InputDecoration(
+                        isDense: true,
+                        contentPadding: const EdgeInsets.symmetric(vertical: 6,horizontal: 4),
+                        hintText: '请输入定位设备编号',
+                        hintStyle: TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey,
+                        ),
 
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(2),
-                          borderSide: BorderSide.none),
-                      filled: true,
-                      fillColor: Colors.grey[100],
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(2),
+                            borderSide: BorderSide.none),
+                        filled: true,
+                        fillColor: Colors.grey[100],
+                      ),
+                      onChanged: (text) {//内容改变的回调
+
+                      },
+                      onSubmitted: (text) {//内容提交(按回车)的回调
+                        LogUtils.GGQ('idcard onSubmitted:${text}');
+                      },
                     ),
-                    onChanged: (text) {//内容改变的回调
-
-                    },
-                    onSubmitted: (text) {//内容提交(按回车)的回调
-                      LogUtils.GGQ('idcard onSubmitted:${text}');
-                    },
                   ),
                 ),),
                 IconButton(
                   splashRadius: 20,
-                  onPressed: (){},
+                  onPressed: (){
+                    controller.scanner(context);
+                  },
                   tooltip: '点击扫描设备编码',
                   icon: Icon(Iconfont.scan,size: 20,color: Colors.blue,),
                 )

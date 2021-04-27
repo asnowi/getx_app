@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_app/common/router/app_pages.dart';
 import 'package:getx_app/common/utils/index.dart';
 import 'package:getx_app/common/widget/picker/index.dart';
+import 'package:getx_app/common/widget/scan/index.dart';
 
 class EbikeInfoController extends GetxController{
 
@@ -59,6 +61,21 @@ class EbikeInfoController extends GetxController{
         break;
     }
   }
+
+
+  void scanner(BuildContext context) async{
+      // Get.toNamed(AppRoutes.scanner);
+   final data = await Get.toNamed(AppRoutes.scanner);
+    if(data != null){
+      if (await Vibration.hasVibrator()) {
+        Vibration.vibrate(duration: 300);
+      }
+      LogUtils.GGQ('data-->${data}');
+      deviceNoController.text = data;
+      update(['deviceNo']);
+    }
+  }
+
 
 
   List<String> _brandList = ['新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛','新日','爱玛',];

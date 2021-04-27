@@ -24,6 +24,8 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+
+
 	<key>NSCameraUsageDescription</key>
 	<string>获取相机权限拍摄照片和录制视频</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
@@ -59,6 +61,8 @@
 	<false/>
 	<key>io.flutter.embedded_views_preview</key>
 	<string>YES</string>
+	<key>io.flutter.embedded_views_preview</key>
+    <true/>
 	<key>LSApplicationQueriesSchemes</key>
     <array>
         <string>baidumap</string>

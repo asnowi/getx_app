@@ -50,6 +50,10 @@ dependencies:
 
   # Flutter时间选择器(城市选择器，时间选择器，数量选择器)
   flutter_pickers: ^2.0.1
+  # 扫码
+  qr_code_scanner: ^0.4.0
+  # 震动反馈
+  vibration: ^1.7.3
 
 
 

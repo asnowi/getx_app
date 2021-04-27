@@ -18,6 +18,7 @@ import 'package:getx_app/pages/ownerInfo/ownerInfo_binding.dart';
 import 'package:getx_app/pages/ownerInfo/ownerInfo_view.dart';
 import 'package:getx_app/pages/resetPwd/resetPwd_binding.dart';
 import 'package:getx_app/pages/resetPwd/resetPwd_view.dart';
+import 'package:getx_app/pages/scanner/scanner_view.dart';
 import 'package:getx_app/pages/splash/splash_view.dart';
 import 'package:getx_app/pages/userIDCard/userIDCard_binding.dart';
 import 'package:getx_app/pages/userIDCard/userIDCard_view.dart';
@@ -115,6 +116,14 @@ class AppPages {
         name: AppRoutes.locus,
         page: () => LocusView(),
         binding: LocusBinding(),
+        transitionDuration: Duration(milliseconds: 300),
+        transition: Transition.rightToLeftWithFade
+    ),
+
+    GetPage(
+        name: AppRoutes.scanner,
+        page: () => ScannerView(),
+
         transitionDuration: Duration(milliseconds: 300),
         transition: Transition.rightToLeftWithFade
     ),
