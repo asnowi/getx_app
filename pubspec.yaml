@@ -49,7 +49,7 @@ dependencies:
   modal_bottom_sheet: ^2.0.0
 
   # Flutter时间选择器(城市选择器，时间选择器，数量选择器)
-  flutter_picker: ^2.0.1
+  flutter_pickers: ^2.0.1
 
 
 

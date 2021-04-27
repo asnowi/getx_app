@@ -321,10 +321,10 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.1.11"
-  flutter_picker:
+  flutter_pickers:
     dependency: "direct main"
     description:
-      name: flutter_picker
+      name: flutter_pickers
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.1"

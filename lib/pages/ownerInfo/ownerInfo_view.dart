@@ -48,7 +48,7 @@ class OwnerInfoView extends GetView<OwnerInfoController>{
               elevation: 0,
               dividerColor: Colors.grey[50],
               expandedHeaderPadding: EdgeInsets.zero,
-              expansionCallback: (int panelIndex, bool isExpanded) => controller.expansionCallback(panelIndex, isExpanded),
+              expansionCallback: (int panelIndex, bool isExpanded) => controller.expandCallback(panelIndex, isExpanded),
               animationDuration: const Duration(milliseconds: 500),
               children: <ExpansionPanel>[
                 ExpansionPanel(
@@ -240,7 +240,9 @@ class OwnerInfoView extends GetView<OwnerInfoController>{
                 padding: controller.itemPadding,
                 child: Row(
                   children: [
-                    Expanded(child: Text('男',style: TextStyle(fontSize: 14,color: Colors.black87),)),
+                    Expanded(child: GetBuilder<OwnerInfoController>(
+                      id: 'gender',
+                      builder: (_) => Text(controller.genderValue == null?'请选择性别': controller.genderValue,style: TextStyle(fontSize: 14,color: Colors.black87),),)),
                     Icon(Icons.arrow_forward_ios_rounded,size: 12,color: Colors.grey[300],),
                   ],
                 ),
@@ -279,8 +281,10 @@ class OwnerInfoView extends GetView<OwnerInfoController>{
                 padding: controller.itemPadding,
                 child: Row(
                   children: [
-                    Expanded(child: Text('1990-10-09',style: TextStyle(fontSize: 14,color: Colors.black87),)),
-                    Icon(Icons.arrow_forward_ios_rounded,size: 12,color: Colors.grey[300],),
+                    Expanded(child: GetBuilder<OwnerInfoController>(
+                      id: 'birthday',
+                      builder: (_) =>Text(controller.dateValue == null?'请选择出生日期': controller.dateValue,style: TextStyle(fontSize: 14,color: Colors.black87),),)),
+                      Icon(Icons.arrow_forward_ios_rounded,size: 12,color: Colors.grey[300],),
                   ],
                 ),
               ),

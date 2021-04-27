@@ -47,7 +47,7 @@ class EbikeInfoView extends GetView<EbikeInfoController>{
               elevation: 0,
               dividerColor: Colors.grey[50],
               expandedHeaderPadding: EdgeInsets.zero,
-              expansionCallback: (int panelIndex, bool isExpanded) => controller.expansionCallback(panelIndex, isExpanded),
+              expansionCallback: (int panelIndex, bool isExpanded) => controller.expandCallback(panelIndex, isExpanded),
               animationDuration: const Duration(milliseconds: 500),
               children: <ExpansionPanel>[
                 ExpansionPanel(
@@ -64,7 +64,7 @@ class EbikeInfoView extends GetView<EbikeInfoController>{
                           _buildEbikeNo(),
                           _buildFrameNo(),
                           _buildEngineNo(),
-                          _buildBrand(),
+                          _buildBrand(context),
                           _buildColor(),
                           Padding(padding: EdgeInsets.symmetric(vertical: 4)),
                           _buildDivider(),
@@ -83,7 +83,7 @@ class EbikeInfoView extends GetView<EbikeInfoController>{
                       child: Column(
                         children: [
                           _buildBuyPrice(),
-                          _buildBuyDate(),
+                          _buildBuyDate(context),
                           Padding(padding: EdgeInsets.symmetric(vertical: 4)),
                           _buildDivider()
                         ],
@@ -368,7 +368,7 @@ class EbikeInfoView extends GetView<EbikeInfoController>{
     );
   }
   
-  Widget _buildBrand(){
+  Widget _buildBrand(BuildContext context){
     return Container(
       child: InkWell(
         child: Row(
@@ -388,7 +388,10 @@ class EbikeInfoView extends GetView<EbikeInfoController>{
                 padding: controller.itemPadding,
                 child: Row(
                   children: [
-                    Expanded(child: Text('请选择品牌',style: TextStyle(fontSize: 14,color: Colors.black87),)),
+                    Expanded(child: GetBuilder<EbikeInfoController>(
+                      id: 'brand',
+                      builder: (_) =>Text(controller.brandValue == null? '请选择品牌': controller.brandValue,style: TextStyle(fontSize: 14,color: Colors.black87),),
+                    )),
                     Icon(Icons.arrow_forward_ios_rounded,size: 12,color: Colors.grey[300],),
                   ],
                 ),
@@ -401,7 +404,8 @@ class EbikeInfoView extends GetView<EbikeInfoController>{
         focusColor: Colors.blue[50],
         highlightColor: Colors.blue[50],
         onTap: (){
-          Get.snackbar('', '品牌');
+          // Get.snackbar('', '品牌');
+          controller.showChooseBrandDialog(context);
         },
       ),
     );
@@ -505,7 +509,7 @@ class EbikeInfoView extends GetView<EbikeInfoController>{
     );
   }
 
-  Widget _buildBuyDate(){
+  Widget _buildBuyDate(BuildContext context){
     return Container(
       child: InkWell(
         child: Row(
@@ -525,7 +529,10 @@ class EbikeInfoView extends GetView<EbikeInfoController>{
                 padding: controller.itemPadding,
                 child: Row(
                   children: [
-                    Expanded(child: Text('请选择购买时间',style: TextStyle(fontSize: 14,color: Colors.black87),)),
+                    Expanded(child: GetBuilder<EbikeInfoController>(
+                      id: 'buyTime',
+                      builder: (_) => Text(controller.dateValue == null ? '请选择购买时间':controller.dateValue,style: TextStyle(fontSize: 14,color: Colors.black87),),
+                    )),
                     Icon(Icons.arrow_forward_ios_rounded,size: 12,color: Colors.grey[300],),
                   ],
                 ),
@@ -538,7 +545,8 @@ class EbikeInfoView extends GetView<EbikeInfoController>{
         focusColor: Colors.blue[50],
         highlightColor: Colors.blue[50],
         onTap: (){
-          Get.snackbar('', '购买时间');
+          //Get.snackbar('', '购买时间');
+          controller.showChooseBuyDateDialog(context);
         },
       ),
     );

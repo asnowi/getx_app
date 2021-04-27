@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_picker/flutter_picker.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/common/router/app_pages.dart';
 import 'package:getx_app/common/utils/index.dart';
+import 'package:getx_app/common/widget/picker/index.dart';
 
 class OwnerInfoController extends GetxController{
 
@@ -36,7 +36,7 @@ class OwnerInfoController extends GetxController{
     update(['expand']);
   }
 
-  ExpansionPanelCallback expansionCallback(int panelIndex, bool isExpanded){
+  ExpansionPanelCallback expandCallback(int panelIndex, bool isExpanded){
     LogUtils.GGQ('panelIndex ->${panelIndex} --isExpanded-> ${isExpanded}');
     switch(panelIndex){
       case 0:
@@ -50,47 +50,59 @@ class OwnerInfoController extends GetxController{
 
   List<String> _genderList = ['男','女'];
 
+  String _genderValue;
+
+  String get genderValue => _genderValue;
+  void setGenderValue(String val){
+    this._genderValue = val;
+    update(['gender']);
+  }
+
+
+  @override
+  void onReady() {
+    // this.setGenderValue(_genderList[0]);
+    // this.setDateValue('1990-10-09');
+    super.onReady();
+  }
 
   ///性别选择器
   void showChooseGenderDialog(BuildContext context) {
-    showPicker(BuildContext context) {
-      Picker picker = Picker(
-          adapter: PickerDataAdapter<String>(pickerdata: _genderList),
-          changeToFirst: true,
-          textAlign: TextAlign.left,
-          columnPadding: const EdgeInsets.all(8.0),
-          onConfirm: (Picker picker, List value) {
-            print(value.toString());
-            print(picker.getSelectedValues());
-          }
-      );
-      // picker.show();
-    }
+    Pickers.showSinglePicker(context, data: _genderList,selectData: _genderValue, pickerStyle: PickerDefaultStyle(title: '选择性别'),
+    onChanged: (dynamic data){}, onConfirm: (dynamic data){
+      LogUtils.GGQ('确定->${data}');
+      setGenderValue(data);
+    });
+  }
+
+
+  String _dateValue;
+  String get dateValue => _dateValue;
+  void setDateValue(String val){
+    this._dateValue = val;
+    update(['birthday']);
   }
 
   /// 日期选择器
-  void showChooseDateDialog(BuildContext context) async {
-    await showModalBottomSheet(
-        context: context,
-        isScrollControlled: true,
-        builder: (BuildContext context) {
-          //56
-          return ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: 0.3.sh),
-            child: ListView.separated(
-              itemCount: _genderList == null ? 0 : _genderList.length,
-              separatorBuilder: (context, index) {
-                return Divider(
-                  height: 0,
-                );
-              },
-              itemBuilder: (context, index) {
-                return Container(
-                );
-              },
-            ),
-          );
-        });
+  void showChooseDateDialog(BuildContext context) {
+    Pickers.showDatePicker(
+      context,
+      // 模式，详见下方
+      mode: DateMode.YMD,
+      // maxDate: PDuration.now(),
+      pickerStyle: PickerDefaultStyle(title: '选择日期'),
+      onConfirm: (PDuration data) {
+        //PDuration{year: 2021, month: 4, day: 27, hour: 0, minute: 0, second: 0}
+        _dateValue = '${data.year}年${data.month}月${data.day}日';
+        DateTime utcTime = DateTime.utc(data.year,data.month,data.day);
+        //时间戳  1619481600000
+        int timestamp = utcTime.millisecondsSinceEpoch;
+        LogUtils.GGQ('确定->${dateValue}');
+        LogUtils.GGQ('确定->${timestamp}');
+        setDateValue(_dateValue);
+      },
+      onChanged: (PDuration data){},
+    );
   }
 
 
@@ -98,4 +110,19 @@ class OwnerInfoController extends GetxController{
     Get.toNamed(AppRoutes.ebikeInfo);
   }
 
+}
+
+
+/// 默认样式
+class PickerDefaultStyle extends PickerStyle {
+  PickerDefaultStyle({String title}) {
+    this.headDecoration = BoxDecoration(
+        color: Colors.white,
+        borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(10), topRight: Radius.circular(10)));
+    if (title != null && title != '') {
+      this.title = Center(child: Text(
+          title, style: TextStyle(color: Colors.black, fontSize: 14)));
+    }
+  }
 }
