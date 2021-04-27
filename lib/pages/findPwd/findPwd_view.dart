@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_app/common/config/config.dart';
 import 'package:getx_app/common/utils/index.dart';
 import 'package:getx_app/pages/findPwd/findPwd.controller.dart';
 
@@ -12,6 +13,7 @@ class FindPwdView extends GetView<FindPwdController> {
         elevation: 0.0,
         backgroundColor: Colors.white,
         leading: IconButton(
+          splashRadius: Config.backRadius,
           onPressed: () {
             Get.back();
           },

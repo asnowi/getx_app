@@ -14,6 +14,7 @@ class CodeView extends GetView<CodeController>{
         elevation: 0.0,
         backgroundColor: Colors.white,
         leading: IconButton(
+          splashRadius: Config.backRadius,
           onPressed: () {
             Get.back();
           },

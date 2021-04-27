@@ -15,6 +15,7 @@ class EbikeInfoView extends GetView<EbikeInfoController>{
         elevation: 0.0,
         title: Text('车辆信息填写',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.black87),),
         leading: IconButton(
+          splashRadius: Config.backRadius,
           onPressed: () {
             Get.back();
           },

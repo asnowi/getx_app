@@ -11,6 +11,7 @@ class ResetPwdView extends GetView<ResetPwdController>{
         elevation: 0.0,
         backgroundColor: Colors.white,
         leading: IconButton(
+          splashRadius: Config.backRadius,
           onPressed: () {
             Get.back();
           },

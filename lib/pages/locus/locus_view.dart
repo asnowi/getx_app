@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_app/common/config/config.dart';
 import 'package:getx_app/common/utils/index.dart';
 import 'package:getx_app/common/widget/baidu/index.dart';
 import 'package:getx_app/pages/locus/locus_controller.dart';
@@ -14,6 +15,7 @@ class LocusView extends GetView<LocusController>{
         elevation: 0.0,
         title: Text('轨迹查询',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.black87),),
         leading: IconButton(
+          splashRadius: Config.backRadius,
           onPressed: () {
             Get.back();
           },
