@@ -25,6 +25,10 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
+apply plugin: 'kotlin-kapt'
+// walle
+apply plugin: 'walle'
+
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
@@ -46,6 +50,7 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
 
+        multiDexEnabled true
 //        ndk {
 //            //选择要添加的对应cpu类型的.so库。
 //            abiFilters "armeabi-v7a" //,"armeabi" "arm64-v8a", "x86", "mips"
@@ -111,6 +116,32 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+//    android.applicationVariants.all {
+//        variant ->
+//            variant.outputs.all {
+//                def fileName
+//                def date = new Date()
+//                def formattedDate = date.format('yyyyMMdd')
+//                if (variant.buildType.name.equals('release')) {
+//                    fileName = "getx_V${variant.mergedFlavor.versionName}_release_${formattedDate}.apk"
+//                } else if (variant.buildType.name.equals('debug')) {
+//                    fileName = "getx_V${variant.mergedFlavor.versionName}_debug_${formattedDate}.apk"
+//                }
+//                outputFileName = fileName
+//            }
+//    }
+
+    //添加如下配置就ok了
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+        jumboMode = true
+    }
 }
 
 flutter {
@@ -120,3 +151,5 @@ flutter {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
+
+apply from: 'multiple-channel.gradle'

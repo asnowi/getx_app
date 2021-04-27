@@ -1,0 +1,12 @@
+{
+  "channelInfoList": [
+    {
+      "channel": "official",
+      "alias": "官网",
+      "extraInfo": {
+        "INSTALL_CHANNEL": "1",
+        "UMENG_CHANNEL": "official"
+      }
+    }
+  ]
+}
