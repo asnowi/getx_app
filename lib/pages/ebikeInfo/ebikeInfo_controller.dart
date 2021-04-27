@@ -128,7 +128,7 @@ class EbikeInfoController extends GetxController{
   }
 
   void onNext(){
-
+      Get.toNamed(AppRoutes.pay);
   }
 }
 
