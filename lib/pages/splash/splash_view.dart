@@ -31,6 +31,7 @@ class _SplashViewState extends State<SplashView> {
 
 
   Future<void> applyPermissions(BuildContext context) async{
+    LogUtils.GGQ('开始权限申请');
     if(await Permission.storage.request().isGranted && await Permission.location.request().isGranted){
       //判断 是欢迎页还是 首页
       if(Global.hasHome){

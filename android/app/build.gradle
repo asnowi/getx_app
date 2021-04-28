@@ -35,7 +35,7 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 29
     useLibrary 'org.apache.http.legacy'
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -46,7 +46,7 @@ android {
 //        applicationId "com.maple.getx_app"
         applicationId "com.maple.baidu"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
 
@@ -109,28 +109,18 @@ android {
 //                checkReleaseBuilds false
 //                abortOnError false
 //            }
+
+
+
             minifyEnabled true   //移除所有未使用的方法、指令以减小 classes.dex 文件
             shrinkResources  true     //移除所有在工程中没有用到的资源
             useProguard true //开启压缩
+            zipAlignEnabled true
             signingConfig signingConfigs.release//需要使用正式证书签名，才能发布到fir.im
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
-//    android.applicationVariants.all {
-//        variant ->
-//            variant.outputs.all {
-//                def fileName
-//                def date = new Date()
-//                def formattedDate = date.format('yyyyMMdd')
-//                if (variant.buildType.name.equals('release')) {
-//                    fileName = "getx_V${variant.mergedFlavor.versionName}_release_${formattedDate}.apk"
-//                } else if (variant.buildType.name.equals('debug')) {
-//                    fileName = "getx_V${variant.mergedFlavor.versionName}_debug_${formattedDate}.apk"
-//                }
-//                outputFileName = fileName
-//            }
-//    }
 
     //添加如下配置就ok了
     lintOptions {
@@ -142,7 +132,25 @@ android {
         javaMaxHeapSize "4g"
         jumboMode = true
     }
+
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                def fileName = 'getx_V1.0.0.apk'
+                def date = new Date()
+                def formattedDate = date.format('yyyyMMdd')
+                if (variant.buildType.name.equals('release')) {
+                    fileName = "getx_V${variant.mergedFlavor.versionName}_release_${formattedDate}.apk"
+                } else if (variant.buildType.name.equals('debug')) {
+                    fileName = "getx_V${variant.mergedFlavor.versionName}_debug_${formattedDate}.apk"
+                }
+                outputFileName = fileName
+            }
+    }
 }
+
+
+
 
 flutter {
     source '../..'

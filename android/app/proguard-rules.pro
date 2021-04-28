@@ -305,6 +305,7 @@ androidx.recyclerview.widget.LinearLayoutManager mLayoutManager;
 #百度地图混淆
 -keep class com.baidu.** {*;}
 -keep class vi.com.** {*;}
+-keep class com.baidu.vi.** {*;}
 -dontwarn com.baidu.**
 #百度地图混淆-end
 
@@ -408,3 +409,34 @@ androidx.recyclerview.widget.LinearLayoutManager mLayoutManager;
 -keep class com.huawei.**{*;}
 
 
+# flutter
+-dontwarn com.baidu.mapapi.base.**
+-keep class com.baidu.mapapi.base.**{*;}
+-dontwarn com.baidu.bmfmap.**
+-keep class com.baidu.bmfmap.**{*;}
+-dontwarn com.baidu.mapapi.search.**
+-keep class com.baidu.mapapi.search.**{*;}
+-dontwarn com.baidu.mapapi.utils.**
+-keep class com.baidu.mapapi.utils.**{*;}
+-dontwarn com.baidu.bdmap_location_flutter_plugin.**
+-keep class com.baidu.bdmap_location_flutter_plugin.**{*;}
+-dontwarn io.flutter.embedding.engine.plugins.lifecycle.**
+-keep class io.flutter.embedding.engine.plugins.lifecycle.**{*;}
+-dontwarn io.flutter.plugins.flutter_plugin_android_lifecycle.**
+-keep class io.flutter.plugins.flutter_plugin_android_lifecycle.**{*;}
+-dontwarn io.flutter.embedding.engine.plugins.lifecycle.**
+-keep class io.flutter.embedding.engine.plugins.lifecycle.**{*;}
+-dontwarn com.chavesgu.images_picker.**
+-keep class com.chavesgu.images_picker.**{*;}
+-dontwarn io.flutter.plugins.pathprovider.**
+-keep class io.flutter.plugins.pathprovider.**{*;}
+-dontwarn com.baseflow.permissionhandler.**
+-keep class com.baseflow.permissionhandler.**{*;}
+-dontwarn net.touchcapture.qr.flutterqr.**
+-keep class net.touchcapture.qr.flutterqr.**{*;}
+-dontwarn io.flutter.plugins.sharedpreferences.**
+-keep class io.flutter.plugins.sharedpreferences.**{*;}
+-dontwarn com.tekartik.sqflite.**
+-keep class com.tekartik.sqflite.**{*;}
+-dontwarn com.benjaminabel.vibration.**
+-keep class com.benjaminabel.vibration.**{*;}

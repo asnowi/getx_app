@@ -113,7 +113,8 @@ dependencies:
   #
   flutter_baidu_mapapi_base: ^2.0.1
 
-
+  # walle
+  flutter_walle_plugin: ^1.0.3
 
 
 

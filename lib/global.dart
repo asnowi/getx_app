@@ -8,6 +8,7 @@ import 'package:getx_app/common/db/index.dart';
 import 'package:getx_app/common/utils/index.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter_baidu_mapapi_base/flutter_baidu_mapapi_base.dart' show BMFMapSDK, BMF_COORD_TYPE;
+import 'package:flutter_walle_plugin/flutter_walle_plugin.dart';
 
 class Global{
   /// 是否 release
@@ -26,6 +27,7 @@ class Global{
 
   /// init
   static Future init() async {
+    LogUtils.GGQ('init--->>>>');
     // 运行初始
     WidgetsFlutterBinding.ensureInitialized();
 
@@ -41,16 +43,16 @@ class Global{
     userInfo = dbUtil.getCurrentUser();
     //  android 状态栏为透明的沉浸
     if (isAndroid) {
-        SystemUiOverlayStyle systemUiOverlayStyle =
-        SystemUiOverlayStyle(
+      SystemUiOverlayStyle systemUiOverlayStyle =
+      SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
           statusBarIconBrightness: Brightness.dark,
           statusBarBrightness: Brightness.dark,
           systemNavigationBarColor: Colors.white,
           systemNavigationBarDividerColor: Colors.white,
           systemNavigationBarIconBrightness: Brightness.dark
-        );
-        SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+      );
+      SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
     }
 
 
@@ -88,6 +90,12 @@ class Global{
       LogUtils.GGQ('--百度地图->>>>ios<<<---');
     }
 
+    try {
+      Map channelMap = await FlutterWallePlugin.getWalleChannelInfo();
+      channelMap.forEach((key, value) {
+        LogUtils.GGQ('key->${key} ---value- ${value.channel}');
+      });
+    } on PlatformException {}
   }
 
 

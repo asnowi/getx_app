@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:getx_app/common/router/app_pages.dart';
 import 'package:getx_app/global.dart';
+import 'package:getx_app/pages/splash/splash_view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
@@ -20,6 +21,9 @@ Future<void> main() async{
 }
 
 class MyApp extends StatelessWidget {
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +47,7 @@ class MyApp extends StatelessWidget {
             enableLog: true,
             // logWriterCallback: Logger.write,
             initialRoute: AppPages.INITIAL,
+            home: SplashView(),
             getPages: AppPages.routes,
             unknownRoute: AppPages.unknownRoute,
 

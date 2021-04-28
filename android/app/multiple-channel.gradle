@@ -6,5 +6,5 @@ walle {
     // 定制渠道包的APK的文件名称
     apkFileNameFormat = '${projectName}-${channel}-${buildType}-v${versionName}.apk'
     // 渠道配置文件
-    configFile = new File("${project.getProjectDir()}/config.json")
+    configFile = new File("${project.getProjectDir()}/channelInfo.json")
 }
